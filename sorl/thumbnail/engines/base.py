@@ -16,6 +16,7 @@ class EngineBase(object):
         """
         Processing conductor, returns the thumbnail as an image engine instance
         """
+        image = self.opaquen(image, options)
         image = self.cropbox(image, geometry, options)
         image = self.orientation(image, geometry, options)
         image = self.colorspace(image, geometry, options)
