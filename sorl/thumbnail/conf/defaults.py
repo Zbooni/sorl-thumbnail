@@ -83,6 +83,9 @@ THUMBNAIL_BLUR = 0
 THUMBNAIL_PADDING = False
 THUMBNAIL_PADDING_COLOR = '#ffffff'
 
+# Color to use when making transparent pixels, like backgrounds, opaque
+THUMBNAIL_BACKGROUND_COLOR = '#ffffff'
+
 # Save as progressive when saving as jpeg
 THUMBNAIL_PROGRESSIVE = True
 
