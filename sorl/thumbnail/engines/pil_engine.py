@@ -87,6 +87,15 @@ class Engine(EngineBase):
                 lambda i: i[alpha_index] == 0,
                 image.getdata()))
 
+    def _opaquen(self, image, options):
+        """Return a new Image instance that is opaque, i.e. not transparent."""
+        if not self.has_transparency(image):
+            return image
+
+        bg_image = Image.new(
+            'RGBA', image.size, color=options.get('background_color'))
+        return Image.alpha_composite(bg_image, image)
+
     def _cropbox(self, image, x, y, x2, y2):
         return image.crop((x, y, x2, y2))
 
