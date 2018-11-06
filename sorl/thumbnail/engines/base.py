@@ -27,6 +27,10 @@ class EngineBase(object):
         image = self.padding(image, geometry, options)
         return image
 
+    def opaquen(self, image, options):
+        """Wrapper for ``_opaquen``."""
+        return self._opaquen(image, options)
+
     def cropbox(self, image, geometry, options):
         """
         Wrapper for ``_cropbox``
@@ -192,6 +196,10 @@ class EngineBase(object):
         """
         Checks if the supplied raw data is valid image data
         """
+        raise NotImplementedError()
+
+    def _opaquen(self, image, options):
+        """Return a new Image instance that is opaque, i.e. not transparent."""
         raise NotImplementedError()
 
     def _orientation(self, image):
