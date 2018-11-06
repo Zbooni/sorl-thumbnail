@@ -39,6 +39,7 @@ class ThumbnailBackend(object):
         'rounded': None,
         'padding': settings.THUMBNAIL_PADDING,
         'padding_color': settings.THUMBNAIL_PADDING_COLOR,
+        'background_color': settings.THUMBNAIL_BACKGROUND_COLOR,
     }
 
     extra_options = (
