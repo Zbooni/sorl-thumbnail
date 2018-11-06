@@ -1,5 +1,6 @@
 from __future__ import unicode_literals, division
 
+import itertools
 import math
 from sorl.thumbnail.engines.base import EngineBase
 from sorl.thumbnail.compat import BufferIO
@@ -73,6 +74,18 @@ class Engine(EngineBase):
         format = options['format']
 
         return self._colorspace(image, colorspace, format)
+
+    def has_transparency(self, image):
+        """Return `True` if image has transparency, `False` otherwise."""
+        try:
+            alpha_index = image.getbands().index('A')
+        except ValueError:
+            return False
+
+        return any(
+            itertools.imap(
+                lambda i: i[alpha_index] == 0,
+                image.getdata()))
 
     def _cropbox(self, image, x, y, x2, y2):
         return image.crop((x, y, x2, y2))
