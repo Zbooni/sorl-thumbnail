@@ -1,6 +1,10 @@
 from __future__ import unicode_literals, division
 
-import itertools
+try:
+    from itertools import imap
+except ImportError:
+    imap = map
+
 import math
 from sorl.thumbnail.engines.base import EngineBase
 from sorl.thumbnail.compat import BufferIO
@@ -82,10 +86,7 @@ class Engine(EngineBase):
         except ValueError:
             return False
 
-        return any(
-            itertools.imap(
-                lambda i: i[alpha_index] == 0,
-                image.getdata()))
+        return any(imap(lambda i: i[alpha_index] == 0, image.getdata()))
 
     def _opaquen(self, image, options):
         """Return a new Image instance that is opaque, i.e. not transparent."""
